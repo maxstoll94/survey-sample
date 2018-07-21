@@ -1,0 +1,12 @@
+﻿@model TestApplicationForMorzanoth.Models.SurveyCompletedView
+
+@{
+    ViewBag.Title = "Survey";
+}
+
+<div class="container">
+    <h3>Thank you for completing the survey on @Model.CategoryName.</h3>
+    @Html.ActionLink("Back", "Category", "Home", new { @class = "btn btn-default" })
+</div>
+
+

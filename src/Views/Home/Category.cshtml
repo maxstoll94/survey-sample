@@ -1,0 +1,42 @@
+﻿@model IEnumerable<TestApplicationForMorzanoth.Models.CategoryItem>
+
+@{
+    ViewBag.Title = "View";
+}
+
+<h2>View</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            <label>Name</label>
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @if (!item.HasCompleted && !item.HasStarted)
+            {
+                @Html.ActionLink("Take Survey", "Survey", new { categoryId = item.CategoryId })
+            }
+            else if (!item.HasCompleted && item.HasStarted)
+            {
+                @Html.ActionLink("Continue Survey", "Load", new { categoryId = item.CategoryId })
+            }
+            else if (item.HasStarted && item.HasCompleted)
+            {
+                <font color="green">Survey Completed</font>
+            }
+        </td>
+    </tr>
+}
+
+</table>
